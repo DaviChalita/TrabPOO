@@ -1,18 +1,18 @@
-package projetopoo.gui;
+package projetopoo;
 
 import java.util.*;
-import projetopoo.obj.Funcionario;
-import projetopoo.obj.RH;
-import static projetopoo.obj.RH.*;
+import projetopoo.rh.Funcionario;
+import projetopoo.rh.RH;
 
 
 public class FuncionarioGUI extends javax.swing.JFrame {    
     
-    static RH quadroFuncionarios = new RH();    
+    RH quadroFuncionarios = new RH();        
+    
     public FuncionarioGUI() {
         initComponents();
-    }
-
+    } 
+    
     private void limpaCampos() {
         jTextFieldNome.setText("");
         jTextFieldCPF.setText("");
@@ -43,6 +43,11 @@ public class FuncionarioGUI extends javax.swing.JFrame {
 
         jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCadastrarMouseClicked(evt);
+            }
+        });
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarActionPerformed(evt);
@@ -72,57 +77,55 @@ public class FuncionarioGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCPF)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExcluir)))
+                        .addComponent(jLabelCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCEP)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonPesquisa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonPesquisa)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButtonCadastrar)))
-                .addGap(47, 47, 47))
+                .addComponent(jButtonCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jButtonExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCadastrar)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNome)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCPF)
                     .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisa))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCEP)
                     .addComponent(jTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrar)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonCadastrar))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jButtonExcluir))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -130,25 +133,29 @@ public class FuncionarioGUI extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         Funcionario f = new Funcionario(
-            jTextFieldNome.getText(),
-            jTextFieldCPF.getText(),
-            jTextFieldCEP.getText()
+                jTextFieldNome.getText(),
+                jTextFieldCPF.getText(),
+                jTextFieldCEP.getText()
         );
-        contratar(f);
+        quadroFuncionarios.contratar(f);
         f.alocado();      
         limpaCampos();
-        System.out.println("Usuario cadastrado com sucesso");  
+        System.out.println("Usuario cadastrado com sucesso");       
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
+    private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
+
+    }//GEN-LAST:event_jButtonCadastrarMouseClicked
+
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        demitir(jTextFieldCPF.getText());
-        jTextFieldNome.setText("");
-        jTextFieldCPF.setText("");
-        jTextFieldCEP.setText("");
+        quadroFuncionarios.demitir(jTextFieldCPF.getText());
+        System.out.println("Usuario demitido com sucesso");
+        limpaCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaActionPerformed
-        Funcionario f = recuperar(jTextFieldCPF.getText());
+        System.out.println(jTextFieldCPF.getText());
+        Funcionario f = quadroFuncionarios.recuperar(jTextFieldCPF.getText());
         
         if(f != null) {
             System.out.println(f.getNome());
@@ -160,6 +167,7 @@ public class FuncionarioGUI extends javax.swing.JFrame {
         } else {
             System.out.println("Funcionário não encontrado!");
         }
+
     }//GEN-LAST:event_jButtonPesquisaActionPerformed
 
     public static void main(String args[]) {

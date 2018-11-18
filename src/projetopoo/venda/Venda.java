@@ -1,4 +1,4 @@
-package projetopoo.obj;
+package projetopoo.venda;
 
 import java.util.*;
 

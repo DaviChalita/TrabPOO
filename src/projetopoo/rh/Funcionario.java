@@ -1,7 +1,12 @@
-package projetopoo.obj;
+package projetopoo.rh;
 
 
 public class Funcionario {
+    private String nome;
+    private String cpf;
+    private String cep;
+    private boolean alocar;
+    
     public Funcionario(String nome, String cpf, String cep) {
         setNome(nome);
         setCpf(cpf);
@@ -9,15 +14,15 @@ public class Funcionario {
         this.alocar = false;
     }
     
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setCpf(String cpf) {
+    private void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public void setCep(String cep) {
+    private void setCep(String cep) {
         this.cep = cep;
     }
  
@@ -36,9 +41,4 @@ public class Funcionario {
     public void alocado(){
         this.alocar = true;
     }
-
-    private String nome;
-    private String cpf;
-    private String cep;
-    private boolean alocar;
 }
