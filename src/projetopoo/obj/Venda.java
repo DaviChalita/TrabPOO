@@ -3,7 +3,7 @@ package projetopoo.obj;
 import java.util.*;
 
 public class Venda {
-    private float valorTotal;
+    /*private float valorTotal;
     private List<Produto> prodsCarrinho = new ArrayList();
     private List<Produto> produtos = new ArrayList();
     
@@ -20,6 +20,6 @@ public class Venda {
         for(Produto p : prodsCarrinho){
             valorTotal += valor do campo de texto * 25;
         }
-    }
+    }*/
     
 }
