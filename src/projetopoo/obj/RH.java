@@ -7,23 +7,22 @@ public class RH {
   
     public void contratar(Funcionario f){
          quadroFuncionarios.add(f);
-    }
+    }    
     
     public void demitir(String cpf) {
+        Funcionario f = recuperar(cpf);
         
-        for(Funcionario f : quadroFuncionarios){
-            if((f.getCpf()).equals(cpf)){
-                quadroFuncionarios.remove(f);
-            }
-        }
+        if (f != null) 
+            quadroFuncionarios.remove(f);        
     }
     
     public Funcionario recuperar(String cpf) {
         for(Funcionario f : quadroFuncionarios) {
-            if((f.getCpf()).equals(cpf)) {
-                return f;
-            }
+            if(f.getCpf().equals(cpf))
+                System.out.println(f.getNome());
+                return f;            
         }
+        
         return null;
     }
 }

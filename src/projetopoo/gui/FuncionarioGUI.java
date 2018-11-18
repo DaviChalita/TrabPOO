@@ -7,13 +7,18 @@ import projetopoo.obj.RH;
 
 public class FuncionarioGUI extends javax.swing.JFrame {    
     
-    RH quadroFuncionarios = new RH();    
+    RH quadroFuncionarios = new RH();        
     
-    private String nome, cpf, cep;
     public FuncionarioGUI() {
         initComponents();
+    } 
+    
+    private void limpaCampos() {
+        jTextFieldNome.setText("");
+        jTextFieldCPF.setText("");
+        jTextFieldCEP.setText("");
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -127,15 +132,15 @@ public class FuncionarioGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        Funcionario f = new Funcionario();
-        f.setNome(jTextFieldNome.getText());
-        f.setCpf(jTextFieldCPF.getText());
-        f.setCep(jTextFieldCEP.getText());
-        f.alocado();        
-        System.out.println("Usuario cadastrado com sucesso");
-        jTextFieldNome.setText("");
-        jTextFieldCPF.setText("");
-        jTextFieldCEP.setText("");
+        Funcionario f = new Funcionario(
+                jTextFieldNome.getText(),
+                jTextFieldCPF.getText(),
+                jTextFieldCEP.getText()
+        );
+        
+        f.alocado();      
+        limpaCampos();
+        System.out.println("Usuario cadastrado com sucesso");       
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
@@ -145,18 +150,23 @@ public class FuncionarioGUI extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         quadroFuncionarios.demitir(jTextFieldCPF.getText());
         System.out.println("Usuario demitido com sucesso");
-        jTextFieldNome.setText("");
-        jTextFieldCPF.setText("");
-        jTextFieldCEP.setText("");
+        limpaCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaActionPerformed
-        Funcionario f = new Funcionario();
-        f = quadroFuncionarios.recuperar(jTextFieldCPF.getText());
-        jTextFieldNome.setText(f.getNome());
-        jTextFieldCEP.setText(f.getCep());
-        jTextFieldCPF.setText(f.getCpf());
-        System.out.println("Funcionário: \n"+ f.getNome() +" & "+ f.getCep() +" & "+ f.getCpf());
+        Funcionario f = quadroFuncionarios.recuperar(jTextFieldCPF.getText());
+        
+        if(f != null) {
+            System.out.println(f.getNome());
+            jTextFieldNome.setText(f.getNome());
+            jTextFieldCEP.setText(f.getCep());
+            jTextFieldCPF.setText(f.getCpf());
+            System.out.println("Funcionário: \n"+ f.getNome() +" & "+ f.getCep() +" & "+ f.getCpf());
+            
+        } else {
+            System.out.println("Funcionário não encontrado!");
+        }
+
     }//GEN-LAST:event_jButtonPesquisaActionPerformed
 
     public static void main(String args[]) {
