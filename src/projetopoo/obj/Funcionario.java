@@ -2,6 +2,12 @@ package projetopoo.obj;
 
 
 public class Funcionario {
+    public Funcionario(String nome, String cpf, String cep) {
+        setNome(nome);
+        setCpf(cpf);
+        setCep(cep);
+        this.alocar = false;
+    }
     
     public void setNome(String nome) {
         this.nome = nome;
